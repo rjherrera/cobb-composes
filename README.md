@@ -11,7 +11,7 @@ Each folder represents a service/application, with its compose and its own isola
 - [uptime kuma](https://github.com/louislam/uptime-kuma)
 
 ### Applications
-- Each app folder contains its `compose.yml` and configuration
+- Each app folder contains its `compose.yaml` and configuration
 - App source code (when applicable) lives in `src/` subdirectories (gitignored)
 - Persistent data (when applicable) stored in `data/` subdirectories (gitignored)
 
@@ -22,7 +22,7 @@ Set up and start npm and dockge to be able to manage and expose applications.
 
 ### 1. Create the app folder structure
 
-### 2. Create compose.yml
+### 2. Create compose.yaml
 
 Use the appropriate template based on each app stack. The compose file should:
 - Define all services (db, redis, web, workers, etc.)
