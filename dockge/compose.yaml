@@ -1,0 +1,21 @@
+services:
+  dockge:
+    image: louislam/dockge:1
+    restart: unless-stopped
+    container_name: dockge
+    ports:
+      - 5001:5001
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dockge-data:/app/data
+      - "${DOCKGE_STACKS_DIR}:${DOCKGE_STACKS_DIR}"
+    environment:
+      - DOCKGE_STACKS_DIR=${DOCKGE_STACKS_DIR}
+networks:
+  default:
+    external: true
+    name: npm
+
+volumes:
+  dockge-data:
+    external: true
