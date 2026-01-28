@@ -1,0 +1,22 @@
+# Logs and tempfiles
+/log/*
+/tmp/*
+
+# Env files
+.env.local
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# App source code directories
+*/src/
+**/src/
+
+# App data directories
+*/data/
+**/data/
