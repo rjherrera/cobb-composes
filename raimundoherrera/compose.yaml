@@ -12,6 +12,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - default
+      - npm
 
   postgres:
     image: postgres:18
@@ -30,7 +33,7 @@ services:
       retries: 5
 
 networks:
-  default:
+  npm:
     external: true
     name: npm
 
