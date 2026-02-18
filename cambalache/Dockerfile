@@ -10,10 +10,12 @@ ENV NODE_ENV=production
 
 COPY src/package.json src/yarn.lock ./
 RUN corepack enable && corepack prepare yarn@1.22.22 --activate
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --production=false
 
 COPY src/ ./
 RUN yarn build-assets
+
+RUN yarn install --frozen-lockfile --production=true
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
