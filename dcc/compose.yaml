@@ -7,7 +7,8 @@ services:
       - ./index.html:/usr/share/nginx/html/index.html:ro
     networks:
       - npm
-  networks:
-    npm:
-      external: true
-      name: npm
+
+networks:
+  npm:
+    external: true
+    name: npm
