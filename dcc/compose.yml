@@ -1,13 +1,12 @@
 services:
-    web:
-      image: nginx:alpine
-      restart: unless-stopped
-      container_name: dcc-career-talk-web
-      volumes:
-        - ./index.html:/usr/share/nginx/html/index.html:ro
-      networks:          
-        - npm
-
+  web:
+    image: nginx:alpine
+    restart: unless-stopped
+    container_name: dcc-career-talk-web
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - npm
   networks:
     npm:
       external: true
