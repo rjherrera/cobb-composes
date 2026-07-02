@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    container_name: moodplay-web
+    env_file:
+      - .env
+    environment:
+      DJANGO_DB_PATH: /app/data/db.sqlite3
+    command: ["gunicorn", "moodplay.wsgi", "--bind", "0.0.0.0:${WEB_PORT:-8000}", "--workers", "${GUNICORN_WORKERS:-4}"]
+    volumes:
+      - ./data:/app/data
+    networks:
+      - npm
+
+networks:
+  npm:
+    external: true
+    name: npm
