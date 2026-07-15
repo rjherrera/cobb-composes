@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    container_name: mid-web
+    networks:
+      - npm
+
+networks:
+  npm:
+    external: true
+    name: npm
