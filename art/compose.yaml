@@ -1,0 +1,63 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        VITE_CONVEX_URL: https://convex.art.herrera.su
+    restart: unless-stopped
+    container_name: art-web
+    env_file:
+      - .env
+    environment:
+      CONVEX_SELF_HOSTED_URL: http://backend:3210
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - default
+      - npm
+
+  backend:
+    image: ghcr.io/get-convex/convex-backend:latest
+    restart: unless-stopped
+    container_name: art-backend
+    stop_grace_period: 10s
+    stop_signal: SIGINT
+    env_file:
+      - .env
+    environment:
+      INSTANCE_NAME: art
+      CONVEX_CLOUD_ORIGIN: https://convex.art.herrera.su
+      CONVEX_SITE_ORIGIN: https://convex.art.herrera.su
+      DO_NOT_REQUIRE_SSL: "1"
+      DISABLE_BEACON: "true"
+    volumes:
+      - ./data:/convex/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3210/version"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - default
+      - npm
+
+  dashboard:
+    image: ghcr.io/get-convex/convex-dashboard:latest
+    restart: unless-stopped
+    container_name: art-dashboard
+    environment:
+      NEXT_PUBLIC_DEPLOYMENT_URL: http://backend:3210
+    ports:
+      - "127.0.0.1:6791:6791"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - default
+
+networks:
+  npm:
+    external: true
+    name: npm
