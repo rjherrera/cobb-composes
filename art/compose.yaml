@@ -18,7 +18,7 @@ services:
       - npm
 
   backend:
-    image: ghcr.io/get-convex/convex-backend:latest
+    image: ghcr.io/get-convex/convex-backend:0cf49cbf8c4b7e22e631ceda9b5111f6cccbcd49
     restart: unless-stopped
     container_name: art-backend
     stop_grace_period: 10s
@@ -44,7 +44,7 @@ services:
       - npm
 
   dashboard:
-    image: ghcr.io/get-convex/convex-dashboard:latest
+    image: ghcr.io/get-convex/convex-dashboard:0cf49cbf8c4b7e22e631ceda9b5111f6cccbcd49
     restart: unless-stopped
     container_name: art-dashboard
     environment:
