@@ -48,7 +48,7 @@ services:
     restart: unless-stopped
     container_name: art-dashboard
     environment:
-      NEXT_PUBLIC_DEPLOYMENT_URL: http://backend:3210
+      NEXT_PUBLIC_DEPLOYMENT_URL: https://convex.art.herrera.su
     ports:
       - "127.0.0.1:6791:6791"
     depends_on:
